@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produto — NOIR.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <style>
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s10);
+      align-items: start;
+      padding-top: calc(var(--nav-h) + var(--s8));
+    }
+    /* Gallery */
+    .product-gallery-wrap {
+      position: sticky;
+      top: calc(var(--nav-h) + var(--s6));
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: var(--s3);
+    }
+    .product-thumbs {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s2);
+    }
+    .product-thumb {
+      width: 72px;
+      height: 88px;
+      border-radius: var(--r2);
+      overflow: hidden;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      transition: border-color var(--t1);
+      background: var(--bg-3);
+    }
+    .product-thumb.active { border-color: var(--text); }
+    .product-thumb:hover { border-color: var(--border-2); }
+    .product-gallery-main {
+      aspect-ratio: 3/4;
+      background: var(--bg-3);
+      border-radius: var(--r4);
+      overflow: hidden;
+      position: relative;
+    }
+    /* Info */
+    .product-info { padding-bottom: var(--s16); }
+    .product-info-name {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 44px);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      margin-bottom: var(--s4);
+    }
+    .product-info-price {
+      display: flex;
+      align-items: center;
+      gap: var(--s3);
+      margin-bottom: var(--s4);
+    }
+    .product-add-row {
+      display: flex;
+      gap: var(--s2);
+      margin-top: var(--s6);
+    }
+    /* Sticky CTA on mobile */
+    .sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      padding: var(--s3) var(--pad);
+      background: rgba(8,8,8,0.95);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      z-index: var(--z-sticky);
+      gap: var(--s2);
+    }
+    /* Size guide modal */
+    .size-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .size-table th, .size-table td {
+      padding: var(--s2) var(--s4);
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .size-table th { color: var(--text-2); font-weight: 600; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+    .size-table td { color: var(--text-3); }
+    @media (max-width: 900px) {
+      .product-layout { grid-template-columns: 1fr; padding-top: calc(var(--nav-h) + var(--s4)); }
+      .product-gallery-wrap { position: relative; top: auto; }
+      .product-add-row .btn-lg { display: none; }
+      .sticky-cta { display: flex; }
+      body { padding-bottom: 72px; }
+    }
+    @media (max-width: 600px) {
+      .product-gallery-wrap { grid-template-columns: 1fr; }
+      .product-thumbs { flex-direction: row; }
+      .product-thumb { width: 56px; height: 70px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="header"></div>
+
+<div class="container">
+  <div id="productBreadcrumb" class="breadcrumb" style="padding-top:calc(var(--nav-h) + var(--s5))"></div>
+
+  <div class="product-layout">
+
+    <!-- Gallery -->
+    <div class="product-gallery-wrap">
+      <div class="product-thumbs" id="productThumbs"></div>
+      <div id="productGallery"></div>
+    </div>
+
+    <!-- Info -->
+    <div class="product-info">
+      <h1 class="product-info-name" id="productName"></h1>
+      <div class="product-info-price" id="productPrice"></div>
+      <div id="productRating" style="margin-bottom:var(--s5)"></div>
+      <div id="stockMsg" style="margin-bottom:var(--s4)"></div>
+      <hr class="divider">
+
+      <!-- Colors -->
+      <div style="margin:var(--s5) 0" id="productColors"></div>
+
+      <!-- Sizes -->
+      <div style="margin:var(--s5) 0" id="productSizes"></div>
+
+      <!-- Add to cart -->
+      <div class="product-add-row">
+        <button id="addToCartBtn" class="btn btn-primary btn-lg" style="flex:1">Adicionar ao Carrinho</button>
+        <button id="wishlistBtn" class="btn btn-icon btn-lg" style="width:56px;height:56px" aria-label="Wishlist"></button>
+      </div>
+
+      <!-- Benefits quick row -->
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:var(--s5);padding:var(--s4);background:var(--bg-2);border-radius:var(--r3);border:1px solid var(--border)">
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-2)">
+          <span style="color:var(--green)">✓</span> Envio grátis em encomendas acima de €80
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-2)">
+          <span style="color:var(--green)">✓</span> Devoluções gratuitas em 30 dias
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-2)">
+          <span style="color:var(--green)">✓</span> Pagamento 100% seguro e encriptado
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- Tabs: Descrição / Detalhes / Avaliações -->
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="desc">Descrição</button>
+        <button class="tab-btn" data-tab="details">Detalhes</button>
+        <button class="tab-btn" data-tab="reviews">Avaliações</button>
+      </div>
+      <div>
+        <div class="tab-panel active" data-panel="desc">
+          <p id="productDesc" style="font-size:14px;color:var(--text-2);line-height:1.8"></p>
+        </div>
+        <div class="tab-panel" data-panel="details">
+          <div id="productDetails"></div>
+        </div>
+        <div class="tab-panel" data-panel="reviews" id="reviews">
+          <div id="reviewsList"></div>
+        </div>
+      </div>
+
+      <!-- Accordions -->
+      <div class="accordion-group" style="margin-top:var(--s4)">
+        <div class="accordion-item">
+          <button class="accordion-trigger">Envio & Entrega <span id="chevronShip" class="chevron">${'▾'}</span></button>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              Entrega standard (3-5 dias úteis) · Entrega expresso disponível (1-2 dias úteis) · Envio grátis em encomendas acima de €80.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">Devoluções <span class="chevron">▾</span></button>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              30 dias para devolver. A peça deve estar nova, sem uso, com etiquetas originais. Devoluções gratuitas.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Related Products -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Também te pode interessar</h2>
+    </div>
+    <div class="grid-4" id="relatedGrid"></div>
+  </div>
+</section>
+
+<!-- Mobile Sticky CTA -->
+<div class="sticky-cta">
+  <button class="btn btn-outline btn-icon" id="wishlistBtnMobile" aria-label="Wishlist" style="width:48px;height:48px;flex-shrink:0"></button>
+  <button id="addToCartBtnMobile" class="btn btn-primary btn-full">Adicionar ao Carrinho</button>
+</div>
+
+<!-- Size Guide Modal -->
+<div class="modal-overlay" id="sizeGuideModal">
+  <div class="modal" style="max-width:480px">
+    <div class="modal-header">
+      <span class="modal-title">Guia de Tamanhos</span>
+      <button class="btn-icon" onclick="document.getElementById('sizeGuideModal').classList.remove('open')">✕</button>
+    </div>
+    <p style="font-size:13px;color:var(--text-3);margin-bottom:var(--s5)">Todas as medidas em centímetros.</p>
+    <table class="size-table">
+      <thead><tr><th>Tamanho</th><th>Peito</th><th>Cintura</th><th>Comprimento</th></tr></thead>
+      <tbody>
+        <tr><td>XS</td><td>88–92</td><td>72–76</td><td>66</td></tr>
+        <tr><td>S</td><td>93–97</td><td>77–81</td><td>68</td></tr>
+        <tr><td>M</td><td>98–102</td><td>82–86</td><td>71</td></tr>
+        <tr><td>L</td><td>103–107</td><td>87–91</td><td>73</td></tr>
+        <tr><td>XL</td><td>108–113</td><td>92–97</td><td>75</td></tr>
+        <tr><td>XXL</td><td>114–120</td><td>98–104</td><td>77</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:var(--text-4);margin-top:12px">Para um fit oversized, sobe um tamanho.</p>
+  </div>
+</div>
+
+<div id="footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/shop.js"></script>
+<script src="js/product.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Size guide modal close on overlay click
+  document.getElementById('sizeGuideModal')?.addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
+
+  // Accordion chevrons
+  document.querySelectorAll('.accordion-trigger').forEach(btn => {
+    const svg = document.createElement('div');
+    svg.style.marginLeft = 'auto';
+    svg.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>`;
+    const existingSpan = btn.querySelector('.chevron');
+    if (existingSpan) existingSpan.replaceWith(svg);
+    btn.appendChild(svg);
+  });
+
+  // Mobile sticky CTA sync
+  const mainAdd = document.getElementById('addToCartBtn');
+  const mobileAdd = document.getElementById('addToCartBtnMobile');
+  if (mobileAdd && mainAdd) {
+    mobileAdd.addEventListener('click', () => mainAdd.click());
+  }
+
+  const mainWl = document.getElementById('wishlistBtn');
+  const mobileWl = document.getElementById('wishlistBtnMobile');
+  if (mobileWl) {
+    mobileWl.innerHTML = ICONS.heart;
+    mobileWl.addEventListener('click', () => mainWl?.click());
+  }
+});
+</script>
+</body>
+</html>

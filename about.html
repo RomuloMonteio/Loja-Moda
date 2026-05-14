@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre a Marca — NOIR.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <style>
+    .about-hero {
+      height: 70vh;
+      min-height: 480px;
+      background: linear-gradient(135deg, #0a0a0f 0%, #141420 60%, #080808 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-hero::after {
+      content:'';
+      position:absolute;
+      inset:0;
+      background: radial-gradient(ellipse at center, rgba(196,164,124,0.08) 0%, transparent 60%);
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s5);
+      margin-top: var(--s10);
+    }
+    .value-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r4);
+      padding: var(--s7, 28px) var(--s6);
+      text-align: center;
+    }
+    .value-num {
+      font-family: var(--font-display);
+      font-size: 64px;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: var(--s3);
+    }
+    .split-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s12);
+      align-items: center;
+    }
+    .split-img {
+      aspect-ratio: 4/5;
+      background: var(--bg-3);
+      border-radius: var(--r4);
+      overflow: hidden;
+    }
+    @media (max-width: 900px) {
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .split-section { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .values-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div id="header"></div>
+
+<!-- Hero -->
+<section class="about-hero">
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div style="position:relative;z-index:1;padding:0 var(--pad)">
+    <div class="label reveal" style="color:var(--accent);margin-bottom:16px">Fundada em 2022</div>
+    <h1 class="display-lg reveal">Built Different.</h1>
+    <p class="editorial reveal" style="margin-top:20px;color:var(--text-3)">Roupa feita para durar além das tendências.</p>
+  </div>
+</section>
+
+<!-- Story -->
+<section class="section-lg">
+  <div class="container">
+    <div class="split-section">
+      <div class="split-img reveal-left">
+        <div class="product-placeholder ph-1" style="width:100%;height:100%"></div>
+      </div>
+      <div class="reveal-right">
+        <div class="label" style="color:var(--accent);margin-bottom:16px">A Nossa História</div>
+        <h2 class="display-md" style="margin-bottom:24px">Começou numa garagem em Lisboa.</h2>
+        <p style="font-size:15px;color:var(--text-2);line-height:1.85;margin-bottom:16px">
+          Em 2022, cansados de marcas que prometiam qualidade mas entregavam descartável, dois amigos decidiram criar a marca que queriam usar.
+        </p>
+        <p style="font-size:15px;color:var(--text-2);line-height:1.85;margin-bottom:16px">
+          A NOIR. nasceu do princípio simples de que roupa de qualidade não precisa de ser inacessível. Cada peça é desenvolvida com obsessão pelos detalhes — desde a escolha do tecido ao último ponto de costura.
+        </p>
+        <p style="font-size:15px;color:var(--text-2);line-height:1.85">
+          Hoje vestimos milhares de pessoas em Portugal e no mundo. Mas a obsessão pela qualidade mantém-se a mesma.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Values -->
+<section class="section" style="background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:var(--s10)">
+      <div class="label reveal" style="color:var(--accent);margin-bottom:12px">Os nossos princípios</div>
+      <h2 class="display-md reveal">O que nos move</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <div class="value-num">01</div>
+        <h3 style="font-family:var(--font-display);font-size:22px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Qualidade</h3>
+        <p style="font-size:13px;color:var(--text-3);line-height:1.7">Só trabalhamos com os melhores tecidos. Cada detalhe é testado antes de chegar até ti.</p>
+      </div>
+      <div class="value-card reveal delay-2">
+        <div class="value-num">02</div>
+        <h3 style="font-family:var(--font-display);font-size:22px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Intenção</h3>
+        <p style="font-size:13px;color:var(--text-3);line-height:1.7">Nada é aleatório. Cada peça tem um propósito claro e uma razão de existir na coleção.</p>
+      </div>
+      <div class="value-card reveal delay-4">
+        <div class="value-num">03</div>
+        <h3 style="font-family:var(--font-display);font-size:22px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Sustentabilidade</h3>
+        <p style="font-size:13px;color:var(--text-3);line-height:1.7">Algodão orgânico certificado e poliéster reciclado. Menos impacto, mesma qualidade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission -->
+<section class="section-lg">
+  <div class="container">
+    <div class="split-section">
+      <div class="reveal">
+        <div class="label" style="color:var(--accent);margin-bottom:16px">A Nossa Missão</div>
+        <h2 class="display-md" style="margin-bottom:24px">Democratizar o premium.</h2>
+        <p style="font-size:15px;color:var(--text-2);line-height:1.85;margin-bottom:24px">
+          Acreditamos que roupa de qualidade não deve ser um luxo. A NOIR. existe para provar que é possível fazer melhor — melhor para quem usa, melhor para quem produz, melhor para o planeta.
+        </p>
+        <a href="shop.html" class="btn btn-primary btn-lg">Explorar a Coleção</a>
+      </div>
+      <div class="split-img reveal-right">
+        <div class="product-placeholder ph-4" style="width:100%;height:100%"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer"></div>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>

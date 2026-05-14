@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja — NOIR.</title>
+  <meta name="description" content="Explora toda a coleção NOIR. Filtra por categoria, cor, tamanho e preço.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <style>
+    .shop-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: var(--s10);
+      align-items: start;
+    }
+    .filter-panel {
+      position: sticky;
+      top: calc(var(--nav-h) + var(--s6));
+    }
+    .filter-panel-inner {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r4);
+      overflow: hidden;
+    }
+    .filter-panel-header {
+      padding: var(--s4) var(--s5);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .filter-panel-body { padding: var(--s5); }
+    .sort-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--s6);
+      gap: var(--s4);
+      flex-wrap: wrap;
+    }
+    .cat-pills {
+      display: flex;
+      gap: var(--s2);
+      flex-wrap: wrap;
+      margin-bottom: var(--s5);
+    }
+    .cat-pill {
+      padding: 6px var(--s4);
+      border: 1px solid var(--border);
+      border-radius: var(--rf);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      color: var(--text-3);
+      cursor: pointer;
+      transition: all var(--t1);
+      font-family: var(--font-ui);
+    }
+    .cat-pill:hover, .cat-pill.active {
+      background: var(--text);
+      color: var(--text-inv);
+      border-color: var(--text);
+    }
+    .sort-select-wrap {
+      display: flex;
+      align-items: center;
+      gap: var(--s2);
+    }
+    .sort-select-wrap select {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0 var(--s3);
+      height: 38px;
+      border-radius: var(--r2);
+      font-size: 12px;
+      font-family: var(--font-ui);
+      cursor: pointer;
+      outline: none;
+    }
+    .mobile-filter-bar {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      padding: var(--s3) var(--pad);
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      z-index: var(--z-sticky);
+      gap: var(--s2);
+    }
+    @media (max-width: 900px) {
+      .shop-layout { grid-template-columns: 1fr; }
+      .filter-panel { display: none; }
+      .filter-panel.open {
+        display: block;
+        position: fixed;
+        inset: 0;
+        top: var(--nav-h);
+        z-index: var(--z-overlay);
+        background: var(--bg);
+        overflow-y: auto;
+      }
+      .filter-panel.open .filter-panel-inner {
+        border-radius: 0;
+        border: none;
+        height: 100%;
+      }
+      .mobile-filter-bar { display: flex; }
+      body { padding-bottom: 60px; }
+    }
+    @media (max-width: 600px) {
+      .cat-pills { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="header"></div>
+
+<!-- Page Header -->
+<div class="page-header" style="padding-bottom:var(--s6)">
+  <div class="container">
+    <h1 class="page-header-title">Loja</h1>
+    <p class="page-header-sub">Toda a coleção NOIR. em um lugar.</p>
+  </div>
+</div>
+
+<!-- Category Pills -->
+<div class="container">
+  <div class="cat-pills" id="catPills">
+    <button class="cat-pill" data-filter-cat="">Todos</button>
+    <button class="cat-pill" data-filter-cat="tshirts">T-Shirts & Tops</button>
+    <button class="cat-pill" data-filter-cat="hoodies">Hoodies & Fleece</button>
+    <button class="cat-pill" data-filter-cat="pants">Calças & Shorts</button>
+    <button class="cat-pill" data-filter-cat="outerwear">Casacos</button>
+    <button class="cat-pill" data-filter-cat="accessories">Acessórios</button>
+  </div>
+</div>
+
+<!-- Main -->
+<div class="container section-sm">
+  <div class="shop-layout">
+
+    <!-- Sidebar Filters -->
+    <aside class="filter-panel" id="filterPanel">
+      <div class="filter-panel-inner">
+        <div class="filter-panel-header">
+          <span class="label" style="color:var(--text)">Filtros</span>
+          <button class="btn btn-ghost btn-sm" onclick="clearAllFilters()">Limpar</button>
+        </div>
+        <div class="filter-panel-body">
+
+          <!-- Gender -->
+          <div class="filter-section">
+            <div class="filter-title">Género</div>
+            <div class="filter-options">
+              <label class="filter-option">
+                <input type="radio" name="gender" data-filter-gender="" style="display:none" checked>
+                <span class="filter-size-chip" data-filter-gender="">Todos</span>
+              </label>
+              <label class="filter-option">
+                <input type="radio" name="gender" data-filter-gender="men" style="display:none">
+                <span class="filter-size-chip" data-filter-gender="men">Homem</span>
+              </label>
+              <label class="filter-option">
+                <input type="radio" name="gender" data-filter-gender="women" style="display:none">
+                <span class="filter-size-chip" data-filter-gender="women">Mulher</span>
+              </label>
+            </div>
+          </div>
+          <hr class="divider">
+
+          <!-- Sizes -->
+          <div class="filter-section">
+            <div class="filter-title">Tamanho</div>
+            <div class="filter-size-options">
+              <button class="filter-size-chip" data-filter-size="XS">XS</button>
+              <button class="filter-size-chip" data-filter-size="S">S</button>
+              <button class="filter-size-chip" data-filter-size="M">M</button>
+              <button class="filter-size-chip" data-filter-size="L">L</button>
+              <button class="filter-size-chip" data-filter-size="XL">XL</button>
+              <button class="filter-size-chip" data-filter-size="XXL">XXL</button>
+              <button class="filter-size-chip" data-filter-size="28">28</button>
+              <button class="filter-size-chip" data-filter-size="30">30</button>
+              <button class="filter-size-chip" data-filter-size="32">32</button>
+            </div>
+          </div>
+          <hr class="divider">
+
+          <!-- Colors -->
+          <div class="filter-section">
+            <div class="filter-title">Cor</div>
+            <div class="filter-color-options">
+              <div class="filter-color-swatch" data-filter-color="Black" style="background:#0a0a0a;border:1px solid var(--border-2)" title="Black"></div>
+              <div class="filter-color-swatch" data-filter-color="White" style="background:#f0ebe2" title="White"></div>
+              <div class="filter-color-swatch" data-filter-color="Ash" style="background:#888" title="Ash"></div>
+              <div class="filter-color-swatch" data-filter-color="Charcoal" style="background:#333" title="Charcoal"></div>
+              <div class="filter-color-swatch" data-filter-color="Navy" style="background:#0f1a2e" title="Navy"></div>
+              <div class="filter-color-swatch" data-filter-color="Olive" style="background:#4a4a2a" title="Olive"></div>
+              <div class="filter-color-swatch" data-filter-color="Cream" style="background:#f0e8d6" title="Cream"></div>
+              <div class="filter-color-swatch" data-filter-color="Stone" style="background:#c8b89a" title="Stone"></div>
+            </div>
+          </div>
+          <hr class="divider">
+
+          <!-- Price -->
+          <div class="filter-section">
+            <div class="filter-title">Preço máximo: <span id="priceVal" style="color:var(--text);font-weight:600">€300</span></div>
+            <input type="range" id="priceRange" min="20" max="300" value="300" step="10">
+          </div>
+          <hr class="divider">
+
+          <!-- Collection -->
+          <div class="filter-section">
+            <div class="filter-title">Coleção</div>
+            <div class="filter-options">
+              <button class="filter-size-chip" data-filter-cat="" style="margin-bottom:4px">Todas</button>
+              <button class="filter-size-chip" onclick="shopState.collection='new-season';shopState.page=1;renderShopGrid()">New Season</button>
+              <button class="filter-size-chip" onclick="shopState.collection='essentials';shopState.page=1;renderShopGrid()">Essentials</button>
+              <button class="filter-size-chip" onclick="shopState.collection='summer-drop';shopState.page=1;renderShopGrid()">Summer Drop</button>
+              <button class="filter-size-chip" onclick="shopState.collection='limited';shopState.page=1;renderShopGrid()">Limited</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </aside>
+
+    <!-- Product Grid -->
+    <div>
+      <!-- Active filters chips -->
+      <div id="activeFilters" class="filter-active-chips"></div>
+
+      <!-- Sort bar -->
+      <div class="sort-bar">
+        <span id="shopCount" style="font-size:13px;color:var(--text-3)">— produtos</span>
+        <div class="sort-select-wrap">
+          <span class="label">Ordenar:</span>
+          <select id="sortSelect">
+            <option value="featured">Destaque</option>
+            <option value="new">Mais Recentes</option>
+            <option value="price-asc">Preço: Menor</option>
+            <option value="price-desc">Preço: Maior</option>
+            <option value="rating">Avaliação</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid-3" id="shopGrid"></div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="shopPagination"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile filter bar -->
+<div class="mobile-filter-bar">
+  <button class="btn btn-outline btn-full" id="filterToggle">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
+    Filtros
+  </button>
+  <select id="sortSelectMobile" class="btn btn-outline btn-full" style="appearance:none;text-align:center">
+    <option value="featured">Destaque</option>
+    <option value="new">Mais Recentes</option>
+    <option value="price-asc">Preço ↑</option>
+    <option value="price-desc">Preço ↓</option>
+  </select>
+</div>
+
+<div id="footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/shop.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Sync mobile sort
+  const mobileSort = document.getElementById('sortSelectMobile');
+  mobileSort?.addEventListener('change', () => {
+    shopState.sort = mobileSort.value;
+    shopState.page = 1;
+    renderShopGrid();
+    const mainSort = document.getElementById('sortSelect');
+    if (mainSort) mainSort.value = mobileSort.value;
+  });
+});
+</script>
+</body>
+</html>

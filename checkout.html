@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — NOIR.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <style>
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: var(--s10);
+      align-items: start;
+      padding: calc(var(--nav-h) + var(--s10)) 0 var(--s16);
+    }
+    .checkout-form-section {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r4);
+      padding: var(--s6);
+      margin-bottom: var(--s4);
+    }
+    .checkout-form-section-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: var(--s5);
+      display: flex;
+      align-items: center;
+      gap: var(--s3);
+    }
+    .step-circle {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--bg-4);
+      border: 1.5px solid var(--border-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .payment-methods {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s2);
+      margin-bottom: var(--s5);
+    }
+    .payment-method {
+      border: 1.5px solid var(--border);
+      border-radius: var(--r3);
+      padding: var(--s3);
+      text-align: center;
+      cursor: pointer;
+      transition: all var(--t1);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-3);
+    }
+    .payment-method:hover { border-color: var(--border-2); color: var(--text); }
+    .payment-method.active { border-color: var(--accent); color: var(--text); background: rgba(196,164,124,0.06); }
+    .payment-method-icon { font-size: 20px; margin-bottom: 4px; }
+    @media (max-width: 900px) {
+      .checkout-layout { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .payment-methods { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div id="header"></div>
+
+<div class="container">
+  <!-- Logo centered for checkout -->
+  <div style="text-align:center;padding:var(--s5) 0;border-bottom:1px solid var(--border)">
+    <a href="index.html" style="font-family:var(--font-display);font-size:24px;letter-spacing:.1em;color:var(--text)">NOIR.</a>
+  </div>
+
+  <!-- Steps -->
+  <div class="checkout-steps" style="padding:var(--s6) 0">
+    <div class="checkout-step active" id="step1">
+      <div class="step-num">1</div>
+      <span>Contacto</span>
+    </div>
+    <div class="checkout-step-divider"></div>
+    <div class="checkout-step" id="step2">
+      <div class="step-num">2</div>
+      <span>Entrega</span>
+    </div>
+    <div class="checkout-step-divider"></div>
+    <div class="checkout-step" id="step3">
+      <div class="step-num">3</div>
+      <span>Pagamento</span>
+    </div>
+  </div>
+
+  <div class="checkout-layout">
+    <!-- Form -->
+    <div>
+      <!-- Contact -->
+      <div class="checkout-form-section" id="sectionContact">
+        <div class="checkout-form-section-title">
+          <span class="step-circle">1</span> Informação de Contacto
+        </div>
+        <div class="form-group" style="margin-bottom:var(--s4)">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" id="email" placeholder="nome@email.com" required>
+        </div>
+        <label class="form-checkbox-wrap">
+          <input type="checkbox" class="form-checkbox" checked>
+          <span class="form-checkbox-label">Receber novidades e promoções exclusivas</span>
+        </label>
+      </div>
+
+      <!-- Shipping -->
+      <div class="checkout-form-section" id="sectionShipping">
+        <div class="checkout-form-section-title">
+          <span class="step-circle">2</span> Morada de Entrega
+        </div>
+        <div class="form-row" style="margin-bottom:var(--s4)">
+          <div class="form-group">
+            <label class="form-label">Primeiro Nome</label>
+            <input type="text" class="form-input" placeholder="João" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Apelido</label>
+            <input type="text" class="form-input" placeholder="Silva" required>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:var(--s4)">
+          <label class="form-label">Morada</label>
+          <input type="text" class="form-input" placeholder="Rua Exemplo, 123" required>
+        </div>
+        <div class="form-row" style="margin-bottom:var(--s4)">
+          <div class="form-group">
+            <label class="form-label">Cidade</label>
+            <input type="text" class="form-input" placeholder="Lisboa" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Código Postal</label>
+            <input type="text" class="form-input" placeholder="1000-001" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">País</label>
+          <select class="form-select">
+            <option value="PT" selected>Portugal</option>
+            <option value="ES">Espanha</option>
+            <option value="FR">França</option>
+            <option value="DE">Alemanha</option>
+            <option value="GB">Reino Unido</option>
+          </select>
+        </div>
+        <div style="margin-top:var(--s5)">
+          <div class="label" style="margin-bottom:var(--s3)">Método de Envio</div>
+          <label style="display:flex;align-items:center;justify-content:space-between;padding:var(--s4);border:1.5px solid var(--accent);border-radius:var(--r3);cursor:pointer;margin-bottom:var(--s2)">
+            <div style="display:flex;align-items:center;gap:var(--s3)">
+              <input type="radio" name="shipping" checked style="accent-color:var(--accent)">
+              <div>
+                <div style="font-size:13px;font-weight:600">Standard · 3-5 dias úteis</div>
+                <div style="font-size:12px;color:var(--text-3)">Grátis em encomendas acima de €80</div>
+              </div>
+            </div>
+            <span style="font-size:13px;font-weight:600" id="shippingCost">€4.99</span>
+          </label>
+          <label style="display:flex;align-items:center;justify-content:space-between;padding:var(--s4);border:1px solid var(--border);border-radius:var(--r3);cursor:pointer">
+            <div style="display:flex;align-items:center;gap:var(--s3)">
+              <input type="radio" name="shipping" style="accent-color:var(--accent)">
+              <div>
+                <div style="font-size:13px;font-weight:600">Expresso · 1-2 dias úteis</div>
+              </div>
+            </div>
+            <span style="font-size:13px;font-weight:600">€9.99</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Payment -->
+      <div class="checkout-form-section" id="sectionPayment">
+        <div class="checkout-form-section-title">
+          <span class="step-circle">3</span> Pagamento
+        </div>
+        <div class="payment-methods">
+          <div class="payment-method active" onclick="selectPayment(this,'card')">
+            <div class="payment-method-icon">💳</div>
+            Cartão
+          </div>
+          <div class="payment-method" onclick="selectPayment(this,'mbway')">
+            <div class="payment-method-icon">📱</div>
+            MBWay
+          </div>
+          <div class="payment-method" onclick="selectPayment(this,'paypal')">
+            <div class="payment-method-icon">🅿️</div>
+            PayPal
+          </div>
+        </div>
+
+        <!-- Card fields -->
+        <div id="cardFields">
+          <div class="form-group" style="margin-bottom:var(--s4)">
+            <label class="form-label">Número do Cartão</label>
+            <input type="text" class="form-input" placeholder="0000 0000 0000 0000" maxlength="19" id="cardNum">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Validade</label>
+              <input type="text" class="form-input" placeholder="MM/AA" maxlength="5">
+            </div>
+            <div class="form-group">
+              <label class="form-label">CVV</label>
+              <input type="text" class="form-input" placeholder="123" maxlength="4">
+            </div>
+          </div>
+        </div>
+        <!-- MBWay fields -->
+        <div id="mbwayFields" style="display:none">
+          <div class="form-group">
+            <label class="form-label">Número de Telemóvel</label>
+            <input type="tel" class="form-input" placeholder="+351 9XX XXX XXX">
+          </div>
+          <p style="font-size:13px;color:var(--text-3);margin-top:8px">Receberás uma notificação na app MBWay para confirmar o pagamento.</p>
+        </div>
+        <!-- PayPal -->
+        <div id="paypalFields" style="display:none">
+          <p style="font-size:13px;color:var(--text-3)">Serás redirecionado para o PayPal para completar o pagamento em segurança.</p>
+        </div>
+
+        <div style="margin-top:var(--s5);padding:var(--s3) var(--s4);background:var(--bg-3);border-radius:var(--r2);display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-3)">
+          🔒 Os teus dados de pagamento são encriptados e 100% seguros.
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-full btn-lg" onclick="placeOrder()">Confirmar Encomenda</button>
+      <a href="cart.html" style="display:block;text-align:center;font-size:12px;color:var(--text-3);margin-top:12px">← Voltar ao carrinho</a>
+    </div>
+
+    <!-- Order summary sidebar -->
+    <div style="position:sticky;top:calc(var(--nav-h) + var(--s6))">
+      <div class="order-summary">
+        <div class="order-summary-title">Resumo</div>
+        <div id="checkoutItems" style="margin-bottom:var(--s4)"></div>
+        <div class="order-line">
+          <span>Subtotal</span>
+          <span id="coSubtotal">€0,00</span>
+        </div>
+        <div class="order-line">
+          <span>Envio</span>
+          <span id="coShipping" style="color:var(--green)">GRÁTIS</span>
+        </div>
+        <div class="order-line total">
+          <span>Total</span>
+          <span id="coTotal">€0,00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="footer" style="display:none"></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/cart.js"></script>
+<script>
+function selectPayment(el, type) {
+  document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('cardFields').style.display   = type === 'card' ? '' : 'none';
+  document.getElementById('mbwayFields').style.display  = type === 'mbway' ? '' : 'none';
+  document.getElementById('paypalFields').style.display = type === 'paypal' ? '' : 'none';
+}
+window.selectPayment = selectPayment;
+
+function placeOrder() {
+  const email = document.getElementById('email')?.value;
+  if (!email) { showToast('Preenche o email.', 'error'); return; }
+  const btn = event.target;
+  btn.classList.add('btn-loading');
+  btn.textContent = '';
+  setTimeout(() => {
+    cartClear();
+    btn.classList.remove('btn-loading');
+    showToast('Encomenda confirmada! Obrigado. 🎉', 'success');
+    setTimeout(() => window.location.href = 'tracking.html', 1800);
+  }, 1800);
+}
+window.placeOrder = placeOrder;
+
+// Format card number
+document.getElementById('cardNum')?.addEventListener('input', e => {
+  let v = e.target.value.replace(/\D/g,'').slice(0,16);
+  e.target.value = v.replace(/(.{4})/g,'$1 ').trim();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const cart = getCart();
+  const itemsEl = document.getElementById('checkoutItems');
+  if (itemsEl) {
+    itemsEl.innerHTML = cart.map(i => `
+      <div style="display:flex;gap:10px;margin-bottom:10px;align-items:center">
+        <div style="width:52px;height:64px;border-radius:4px;overflow:hidden;background:var(--bg-3);flex-shrink:0;position:relative">
+          <div class="product-placeholder ${i.ph}" style="width:100%;height:100%"></div>
+          <span style="position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;background:var(--bg-5);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">${i.qty}</span>
+        </div>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${i.name}</div>
+          <div style="font-size:11px;color:var(--text-3)">${i.size}</div>
+        </div>
+        <div style="font-size:13px;font-weight:600">${fmt(i.price * i.qty)}</div>
+      </div>
+    `).join('') || '<p style="font-size:13px;color:var(--text-3)">Carrinho vazio</p>';
+  }
+  const t = cartTotals();
+  const coSub = document.getElementById('coSubtotal');
+  const coShip = document.getElementById('coShipping');
+  const coTotal = document.getElementById('coTotal');
+  if (coSub) coSub.textContent = fmt(t.subtotal);
+  if (coShip) { coShip.textContent = t.shipping === 0 ? 'GRÁTIS' : fmt(t.shipping); coShip.style.color = t.shipping===0?'var(--green)':''; }
+  if (coTotal) coTotal.textContent = fmt(t.total);
+  // Shipping cost label
+  const scEl = document.getElementById('shippingCost');
+  if (scEl) scEl.textContent = t.shipping === 0 ? 'GRÁTIS' : fmt(t.shipping);
+});
+</script>
+</body>
+</html>

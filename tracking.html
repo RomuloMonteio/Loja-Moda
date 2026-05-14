@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rastrear Encomenda — NOIR.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <style>
+    .tracking-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r4);
+      padding: var(--s8);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .tracking-result {
+      max-width: 560px;
+      margin: var(--s6) auto 0;
+      display: none;
+    }
+    .tracking-result.visible { display: block; }
+    .order-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s3);
+      margin-bottom: var(--s6);
+    }
+    .order-info-cell {
+      background: var(--bg-3);
+      border-radius: var(--r3);
+      padding: var(--s4);
+    }
+    .order-info-label { font-size: 11px; color: var(--text-3); margin-bottom: 4px; letter-spacing: .06em; text-transform: uppercase; }
+    .order-info-value { font-size: 14px; font-weight: 600; }
+  </style>
+</head>
+<body>
+<div id="header"></div>
+
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-header-title">Rastrear Encomenda</h1>
+    <p class="page-header-sub">Acompanha o estado da tua encomenda em tempo real.</p>
+  </div>
+</div>
+
+<div class="container section-sm">
+  <!-- Search form -->
+  <div class="tracking-card reveal">
+    <h2 style="font-family:var(--font-display);font-size:20px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:var(--s5)">
+      Número de Encomenda
+    </h2>
+    <form id="trackForm">
+      <div class="form-group" style="margin-bottom:var(--s4)">
+        <label class="form-label">Número de encomenda</label>
+        <input type="text" class="form-input" id="orderNum" placeholder="ex: NOIR-2026-0001" required>
+      </div>
+      <div class="form-group" style="margin-bottom:var(--s5)">
+        <label class="form-label">Email da encomenda</label>
+        <input type="email" class="form-input" id="orderEmail" placeholder="nome@email.com" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-full">Rastrear</button>
+    </form>
+  </div>
+
+  <!-- Result -->
+  <div class="tracking-result" id="trackingResult">
+    <div class="tracking-card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--s5)">
+        <h2 style="font-family:var(--font-display);font-size:20px;letter-spacing:.06em;text-transform:uppercase">
+          Encomenda <span id="trackOrderNum"></span>
+        </h2>
+        <span style="padding:4px 12px;border-radius:var(--rf);font-size:11px;font-weight:700;letter-spacing:.08em;background:rgba(78,201,122,0.15);color:var(--green)">Em Trânsito</span>
+      </div>
+
+      <div class="order-info-grid">
+        <div class="order-info-cell">
+          <div class="order-info-label">Data da Encomenda</div>
+          <div class="order-info-value">14 Mai 2026</div>
+        </div>
+        <div class="order-info-cell">
+          <div class="order-info-label">Entrega Estimada</div>
+          <div class="order-info-value" style="color:var(--accent)">16–18 Mai 2026</div>
+        </div>
+        <div class="order-info-cell">
+          <div class="order-info-label">Transportadora</div>
+          <div class="order-info-value">CTT Expresso</div>
+        </div>
+        <div class="order-info-cell">
+          <div class="order-info-label">Nº de Rastreio</div>
+          <div class="order-info-value">CT123456789PT</div>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="label" style="margin-bottom:var(--s5)">Histórico</div>
+      <div class="tracking-timeline">
+        <div class="tracking-step done">
+          <div class="tracking-dot">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="tracking-step-content">
+            <div class="tracking-step-label">Encomenda confirmada</div>
+            <div class="tracking-step-date">14 Mai 2026 · 09:32</div>
+          </div>
+        </div>
+        <div class="tracking-step done">
+          <div class="tracking-dot">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="tracking-step-content">
+            <div class="tracking-step-label">Em preparação</div>
+            <div class="tracking-step-date">14 Mai 2026 · 14:15</div>
+          </div>
+        </div>
+        <div class="tracking-step current">
+          <div class="tracking-dot">
+            <svg width="8" height="8" viewBox="0 0 24 24" fill="var(--text-inv)"><circle cx="12" cy="12" r="8"/></svg>
+          </div>
+          <div class="tracking-step-content">
+            <div class="tracking-step-label">Em trânsito</div>
+            <div class="tracking-step-date">15 Mai 2026 · 08:47 · Lisboa, Hub CTT</div>
+          </div>
+        </div>
+        <div class="tracking-step">
+          <div class="tracking-dot"></div>
+          <div class="tracking-step-content">
+            <div class="tracking-step-label">Em distribuição</div>
+            <div class="tracking-step-date">Previsto: 16–18 Mai</div>
+          </div>
+        </div>
+        <div class="tracking-step">
+          <div class="tracking-dot"></div>
+          <div class="tracking-step-content">
+            <div class="tracking-step-label">Entregue</div>
+            <div class="tracking-step-date">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--s6);padding:var(--s4);background:var(--bg-3);border-radius:var(--r3);display:flex;align-items:center;gap:10px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span style="font-size:13px;color:var(--text-2)">Problemas com a entrega? <a href="contact.html" style="color:var(--accent)">Contacta-nos</a></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="footer"></div>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/cart.js"></script>
+<script>
+document.getElementById('trackForm')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const num = document.getElementById('orderNum').value;
+  document.getElementById('trackOrderNum').textContent = num;
+  document.getElementById('trackingResult').classList.add('visible');
+  document.getElementById('trackingResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+// Auto-fill from checkout flow
+const urlNum = new URLSearchParams(window.location.search).get('order');
+if (urlNum) {
+  const input = document.getElementById('orderNum');
+  if (input) { input.value = urlNum; }
+}
+</script>
+</body>
+</html>

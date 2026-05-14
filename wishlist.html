@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist — NOIR.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+<div id="header"></div>
+
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-header-title">Wishlist</h1>
+    <p class="page-header-sub">Os teus artigos guardados.</p>
+  </div>
+</div>
+
+<div class="container section-sm">
+  <div id="wishlistGrid" class="grid-4"></div>
+</div>
+
+<div id="footer"></div>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/shop.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const grid = document.getElementById('wishlistGrid');
+  if (!grid) return;
+  const wl = getWishlist();
+  if (!wl.length) {
+    grid.innerHTML = `
+      <div style="grid-column:1/-1;text-align:center;padding:80px 0;color:var(--text-3)">
+        <div style="font-size:56px;opacity:.2;margin-bottom:16px">♡</div>
+        <div style="font-family:var(--font-display);font-size:28px;letter-spacing:.06em;text-transform:uppercase;color:var(--text);margin-bottom:8px">Wishlist vazia</div>
+        <p style="font-size:14px;margin-bottom:24px">Guarda os artigos que gostares para mais tarde.</p>
+        <a href="shop.html" class="btn btn-primary">Explorar a Loja</a>
+      </div>`;
+    return;
+  }
+  const items = (typeof PRODUCTS !== 'undefined' ? PRODUCTS : []).filter(p => wl.includes(p.id));
+  grid.innerHTML = items.map(p => renderProductCard(p)).join('');
+  grid.querySelectorAll('[data-wish]').forEach(btn => btn.classList.add('active'));
+  initScrollReveal();
+});
+</script>
+</body>
+</html>
