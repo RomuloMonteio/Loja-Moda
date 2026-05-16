@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --input-type=module)",
+      "Bash(node -e \"require\\('fs'\\).readFileSync\\('js/data.js','utf8'\\)\")",
+      "Bash(node -c /home/romy/Documentos/GitHub/Loja-Moda/js/data.js)",
+      "Bash(node -c /home/romy/Documentos/GitHub/Loja-Moda/js/app.js)",
+      "Bash(node -c /home/romy/Documentos/GitHub/Loja-Moda/js/cart.js)",
+      "Bash(node -c /home/romy/Documentos/GitHub/Loja-Moda/js/shop.js)",
+      "Bash(node -c /home/romy/Documentos/GitHub/Loja-Moda/js/product.js)",
+      "Bash(curl -s -o /dev/null -w \"index.html: %{http_code}\\\\nshop.html: \" http://localhost:8081/index.html)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\ncv-jersey-blue.svg: \" http://localhost:8081/shop.html)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8081/assets/images/cv-jersey-blue.svg)"
+    ]
+  }
+}

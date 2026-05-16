@@ -43,26 +43,29 @@ function renderProduct(p) {
     `;
   }
 
-  // 3 gallery placeholders (same ph, slightly different brightness)
-  const imgs = [
-    { ph: p.ph, filter: 'none' },
-    { ph: p.ph, filter: 'brightness(1.12)' },
-    { ph: p.ph, filter: 'brightness(0.88)' },
-  ];
+  // Gallery media helper
+  const makeMedia = (filter = 'none', scale = 1) => p.img
+    ? `<img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:contain;padding:8% 12% 4%;filter:${filter};transform:scale(${scale});transition:transform .4s ease">`
+    : `<div class="product-placeholder ${p.ph}" style="width:100%;height:100%;filter:${filter}"></div>`;
 
   if (gallery) {
     gallery.innerHTML = `
       <div class="product-gallery-main" id="galleryMain">
-        <div class="product-placeholder ${p.ph}" style="width:100%;height:100%"></div>
+        ${makeMedia('none', 1)}
         ${p.isLimited ? '<div class="badge badge-limited" style="position:absolute;top:16px;left:16px">Limited</div>' : ''}
-        ${p.isNew ? '<div class="badge badge-new" style="position:absolute;top:16px;left:16px">New</div>' : ''}
+        ${p.isNew    ? '<div class="badge badge-new"     style="position:absolute;top:16px;left:16px">New</div>'     : ''}
       </div>
     `;
   }
   if (thumbs) {
-    thumbs.innerHTML = imgs.map((img, i) => `
+    const variants = [
+      { filter: 'none',                  scale: 1    },
+      { filter: 'brightness(1.1)',       scale: 1.04 },
+      { filter: 'brightness(0.88) saturate(1.2)', scale: 1 },
+    ];
+    thumbs.innerHTML = variants.map((v, i) => `
       <button class="product-thumb${i===0?' active':''}" data-index="${i}" onclick="setThumb(${i},this)">
-        <div class="product-placeholder ${img.ph}" style="width:100%;height:100%;filter:${img.filter}"></div>
+        ${makeMedia(v.filter, v.scale)}
       </button>
     `).join('');
   }

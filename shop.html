@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loja — NOIR.</title>
-  <meta name="description" content="Explora toda a coleção NOIR. Filtra por categoria, cor, tamanho e preço.">
+  <title>Camisolas de Futebol — NOIR.</title>
+  <meta name="description" content="Camisolas oficiais de futebol — seleções e clubes. Cabo Verde, Portugal, Brasil, Barcelona, Real Madrid e muito mais.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/animations.css">
@@ -123,8 +123,8 @@
 <!-- Page Header -->
 <div class="page-header" style="padding-bottom:var(--s6)">
   <div class="container">
-    <h1 class="page-header-title">Loja</h1>
-    <p class="page-header-sub">Toda a coleção NOIR. em um lugar.</p>
+    <h1 class="page-header-title">Camisolas</h1>
+    <p class="page-header-sub">Seleções nacionais e grandes clubes — toda a coleção num só lugar.</p>
   </div>
 </div>
 
@@ -132,11 +132,8 @@
 <div class="container">
   <div class="cat-pills" id="catPills">
     <button class="cat-pill" data-filter-cat="">Todos</button>
-    <button class="cat-pill" data-filter-cat="tshirts">T-Shirts & Tops</button>
-    <button class="cat-pill" data-filter-cat="hoodies">Hoodies & Fleece</button>
-    <button class="cat-pill" data-filter-cat="pants">Calças & Shorts</button>
-    <button class="cat-pill" data-filter-cat="outerwear">Casacos</button>
-    <button class="cat-pill" data-filter-cat="accessories">Acessórios</button>
+    <button class="cat-pill" data-filter-cat="selecoes">Seleções Nacionais</button>
+    <button class="cat-pill" data-filter-cat="clubes">Grandes Clubes</button>
   </div>
 </div>
 
@@ -153,75 +150,60 @@
         </div>
         <div class="filter-panel-body">
 
-          <!-- Gender -->
+          <!-- Categoria -->
           <div class="filter-section">
-            <div class="filter-title">Género</div>
+            <div class="filter-title">Categoria</div>
             <div class="filter-options">
-              <label class="filter-option">
-                <input type="radio" name="gender" data-filter-gender="" style="display:none" checked>
-                <span class="filter-size-chip" data-filter-gender="">Todos</span>
-              </label>
-              <label class="filter-option">
-                <input type="radio" name="gender" data-filter-gender="men" style="display:none">
-                <span class="filter-size-chip" data-filter-gender="men">Homem</span>
-              </label>
-              <label class="filter-option">
-                <input type="radio" name="gender" data-filter-gender="women" style="display:none">
-                <span class="filter-size-chip" data-filter-gender="women">Mulher</span>
-              </label>
+              <span class="filter-size-chip" data-filter-cat="">Todas</span>
+              <span class="filter-size-chip" data-filter-cat="selecoes">Seleções</span>
+              <span class="filter-size-chip" data-filter-cat="clubes">Clubes</span>
             </div>
           </div>
           <hr class="divider">
 
-          <!-- Sizes -->
+          <!-- Tamanho -->
           <div class="filter-section">
             <div class="filter-title">Tamanho</div>
             <div class="filter-size-options">
-              <button class="filter-size-chip" data-filter-size="XS">XS</button>
               <button class="filter-size-chip" data-filter-size="S">S</button>
               <button class="filter-size-chip" data-filter-size="M">M</button>
               <button class="filter-size-chip" data-filter-size="L">L</button>
               <button class="filter-size-chip" data-filter-size="XL">XL</button>
               <button class="filter-size-chip" data-filter-size="XXL">XXL</button>
-              <button class="filter-size-chip" data-filter-size="28">28</button>
-              <button class="filter-size-chip" data-filter-size="30">30</button>
-              <button class="filter-size-chip" data-filter-size="32">32</button>
             </div>
           </div>
           <hr class="divider">
 
-          <!-- Colors -->
+          <!-- Cor da camisola -->
           <div class="filter-section">
             <div class="filter-title">Cor</div>
             <div class="filter-color-options">
-              <div class="filter-color-swatch" data-filter-color="Black" style="background:#0a0a0a;border:1px solid var(--border-2)" title="Black"></div>
-              <div class="filter-color-swatch" data-filter-color="White" style="background:#f0ebe2" title="White"></div>
-              <div class="filter-color-swatch" data-filter-color="Ash" style="background:#888" title="Ash"></div>
-              <div class="filter-color-swatch" data-filter-color="Charcoal" style="background:#333" title="Charcoal"></div>
-              <div class="filter-color-swatch" data-filter-color="Navy" style="background:#0f1a2e" title="Navy"></div>
-              <div class="filter-color-swatch" data-filter-color="Olive" style="background:#4a4a2a" title="Olive"></div>
-              <div class="filter-color-swatch" data-filter-color="Cream" style="background:#f0e8d6" title="Cream"></div>
-              <div class="filter-color-swatch" data-filter-color="Stone" style="background:#c8b89a" title="Stone"></div>
+              <div class="filter-color-swatch" data-filter-color="Azul"        style="background:#003893"  title="Azul"></div>
+              <div class="filter-color-swatch" data-filter-color="Vermelho"    style="background:#C8102E"  title="Vermelho"></div>
+              <div class="filter-color-swatch" data-filter-color="Branco"      style="background:#F0F0F0;border:1px solid var(--border-2)" title="Branco"></div>
+              <div class="filter-color-swatch" data-filter-color="Amarelo"     style="background:#F5D100"  title="Amarelo"></div>
+              <div class="filter-color-swatch" data-filter-color="Azul Celeste" style="background:#74ACDF" title="Azul Celeste"></div>
+              <div class="filter-color-swatch" data-filter-color="Verde"       style="background:#009C3B"  title="Verde"></div>
+              <div class="filter-color-swatch" data-filter-color="Preto"       style="background:#0a0a0a;border:1px solid var(--border-2)" title="Preto"></div>
             </div>
           </div>
           <hr class="divider">
 
-          <!-- Price -->
+          <!-- Preço -->
           <div class="filter-section">
-            <div class="filter-title">Preço máximo: <span id="priceVal" style="color:var(--text);font-weight:600">€300</span></div>
-            <input type="range" id="priceRange" min="20" max="300" value="300" step="10">
+            <div class="filter-title">Preço máximo: <span id="priceVal" style="color:var(--text);font-weight:600">€150</span></div>
+            <input type="range" id="priceRange" min="50" max="150" value="150" step="5">
           </div>
           <hr class="divider">
 
-          <!-- Collection -->
+          <!-- Coleção -->
           <div class="filter-section">
             <div class="filter-title">Coleção</div>
             <div class="filter-options">
-              <button class="filter-size-chip" data-filter-cat="" style="margin-bottom:4px">Todas</button>
-              <button class="filter-size-chip" onclick="shopState.collection='new-season';shopState.page=1;renderShopGrid()">New Season</button>
-              <button class="filter-size-chip" onclick="shopState.collection='essentials';shopState.page=1;renderShopGrid()">Essentials</button>
-              <button class="filter-size-chip" onclick="shopState.collection='summer-drop';shopState.page=1;renderShopGrid()">Summer Drop</button>
-              <button class="filter-size-chip" onclick="shopState.collection='limited';shopState.page=1;renderShopGrid()">Limited</button>
+              <button class="filter-size-chip" onclick="shopState.collection='';shopState.page=1;renderShopGrid()" style="margin-bottom:4px">Todas</button>
+              <button class="filter-size-chip" onclick="shopState.collection='cabo-verde';shopState.page=1;renderShopGrid()">Cabo Verde</button>
+              <button class="filter-size-chip" onclick="shopState.collection='selecoes';shopState.page=1;renderShopGrid()">Seleções</button>
+              <button class="filter-size-chip" onclick="shopState.collection='clubes';shopState.page=1;renderShopGrid()">Grandes Clubes</button>
             </div>
           </div>
 

@@ -9,7 +9,7 @@ let shopState = {
   collection: '',
   colors: [],
   sizes: [],
-  priceMax: 300,
+  priceMax: 150,
   sort: 'featured',
   search: '',
   page: 1,

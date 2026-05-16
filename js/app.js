@@ -57,10 +57,11 @@ function renderPlaceholder(ph, label = '') {
 function renderHeader() {
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   const links = [
-    { href: 'shop.html',    label: 'Loja' },
-    { href: 'shop.html#collections', label: 'Coleções' },
-    { href: 'about.html',   label: 'Marca' },
-    { href: 'contact.html', label: 'Contacto' },
+    { href: 'shop.html',                           label: 'Camisolas' },
+    { href: 'shop.html?category=selecoes',         label: 'Seleções' },
+    { href: 'shop.html?category=clubes',           label: 'Clubes' },
+    { href: 'shop.html?collection=cabo-verde',     label: 'Cabo Verde' },
+    { href: 'contact.html',                        label: 'Contacto' },
   ];
   const navLinks = links.map(l =>
     `<a href="${l.href}" class="nav-link${currentPage === l.href ? ' active' : ''}">${l.label}</a>`
@@ -102,7 +103,7 @@ function renderFooter() {
         <div class="footer-grid">
           <div>
             <div class="footer-logo">NOIR.</div>
-            <p class="footer-tagline">Roupa construída com intenção. Cada peça pensada para durar além das tendências.</p>
+            <p class="footer-tagline">Camisolas oficiais das maiores seleções e clubes do mundo. Veste as tuas cores.</p>
             <div class="footer-social">
               <a href="#" class="footer-social-link" aria-label="Instagram">${ICONS.instagram}</a>
               <a href="#" class="footer-social-link" aria-label="TikTok">${ICONS.tiktok}</a>
@@ -110,12 +111,12 @@ function renderFooter() {
             </div>
           </div>
           <div>
-            <div class="footer-col-title">Loja</div>
+            <div class="footer-col-title">Camisolas</div>
             <ul class="footer-links">
-              <li><a href="shop.html" class="footer-link">Todos os Produtos</a></li>
-              <li><a href="shop.html?collection=new-season" class="footer-link">New Season</a></li>
-              <li><a href="shop.html?collection=essentials" class="footer-link">Essentials</a></li>
-              <li><a href="shop.html?collection=limited" class="footer-link">Limited Edition</a></li>
+              <li><a href="shop.html" class="footer-link">Todas as Camisolas</a></li>
+              <li><a href="shop.html?category=selecoes" class="footer-link">Seleções Nacionais</a></li>
+              <li><a href="shop.html?category=clubes" class="footer-link">Grandes Clubes</a></li>
+              <li><a href="shop.html?collection=cabo-verde" class="footer-link">Cabo Verde</a></li>
             </ul>
           </div>
           <div>

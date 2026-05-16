@@ -117,7 +117,10 @@ function renderCartPage() {
     ${cart.map(item => `
       <div class="cart-item" style="padding:var(--s5) 0" data-id="${item.id}">
         <div class="cart-item-img" style="width:100px;height:120px">
-          <div class="product-placeholder ${item.ph}" style="width:100%;height:100%"></div>
+          ${item.img
+            ? `<img src="${item.img}" alt="${item.name}" style="width:100%;height:100%;object-fit:contain;padding:4px">`
+            : `<div class="product-placeholder ${item.ph || 'ph-1'}" style="width:100%;height:100%"></div>`
+          }
         </div>
         <div class="cart-item-info" style="flex:1">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
