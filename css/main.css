@@ -879,13 +879,38 @@ p { max-width: 65ch; }
 }
 .color-dot:hover, .color-dot.active { border-color: var(--text); transform: scale(1.2); }
 
-/* Product placeholder gradients */
+/* Product placeholder */
 .product-placeholder {
   width: 100%; height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+/* Jersey silhouette clip-path for product cards */
+.product-card-media .product-placeholder,
+.cart-item-img .product-placeholder {
+  clip-path: polygon(
+    30% 0%, 8% 5%, 0% 20%, 10% 38%, 20% 34%,
+    18% 100%, 82% 100%, 80% 34%, 90% 38%,
+    100% 20%, 92% 5%, 70% 0%,
+    62% 12%, 50% 15%, 38% 12%
+  );
+}
+
+/* Collection card jersey image */
+.collection-card-jersey { background: var(--bg-3); }
+.collection-jersey-img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  padding: 18% 20% 8%;
+  transition: transform var(--t3);
+}
+.collection-card:hover .collection-jersey-img {
+  transform: scale(1.06) translateY(-4px);
+}
+
+/* Legacy neutral shades (fallback) */
 .ph-1 { background: linear-gradient(160deg, #141418 0%, #22222a 100%); }
 .ph-2 { background: linear-gradient(160deg, #180f0a 0%, #2d1c10 100%); }
 .ph-3 { background: linear-gradient(160deg, #0a1410 0%, #162819 100%); }
@@ -894,6 +919,47 @@ p { max-width: 65ch; }
 .ph-6 { background: linear-gradient(160deg, #141818 0%, #1f2828 100%); }
 .ph-7 { background: linear-gradient(160deg, #141010 0%, #261c1c 100%); }
 .ph-8 { background: linear-gradient(160deg, #0f1418 0%, #1a2330 100%); }
+
+/* ---- Team-specific jersey colors ---- */
+
+/* Cabo Verde */
+.ph-cv-blue  { background: linear-gradient(160deg, #002060 0%, #0047B0 100%); }
+.ph-cv-white { background: linear-gradient(160deg, #E8ECF8 0%, #FFFFFF 100%); }
+
+/* Seleções Nacionais */
+.ph-portugal  { background: linear-gradient(145deg, #8B0020 0%, #A2173A 55%, #006600 100%); }
+.ph-france    { background: linear-gradient(160deg, #001650 0%, #002776 100%); }
+.ph-germany   { background: linear-gradient(160deg, #1a1a1a 0%, #3a3a3a 50%, #ffffff 100%); }
+.ph-italy     { background: linear-gradient(160deg, #001a80 0%, #003399 100%); }
+.ph-espanha   { background: linear-gradient(160deg, #820010 0%, #AA151B 100%); }
+.ph-brasil    { background: linear-gradient(145deg, #005C1E 0%, #009C3B 40%, #F5D100 100%); }
+.ph-argentina { background: linear-gradient(160deg, #4a8acc 0%, #74ACDF 50%, #ffffff 100%); }
+
+/* Clubes */
+.ph-barca    {
+  background: linear-gradient(
+    90deg,
+    #004D98 0%, #004D98 14.28%,
+    #A50044 14.28%, #A50044 28.57%,
+    #004D98 28.57%, #004D98 42.86%,
+    #A50044 42.86%, #A50044 57.14%,
+    #004D98 57.14%, #004D98 71.42%,
+    #A50044 71.42%, #A50044 85.71%,
+    #004D98 85.71%, #004D98 100%
+  );
+}
+.ph-madrid   { background: linear-gradient(160deg, #D0D0D8 0%, #F8F8FA 100%); }
+.ph-manu     { background: linear-gradient(160deg, #8B0000 0%, #DA020E 100%); }
+.ph-psg      { background: linear-gradient(160deg, #001a60 0%, #003C8E 70%, #ED1C24 100%); }
+.ph-liverpool { background: linear-gradient(160deg, #8B0010 0%, #C8102E 100%); }
+.ph-milan    {
+  background: repeating-linear-gradient(
+    90deg,
+    #FB090B 0px, #FB090B 22px,
+    #0a0a0a 22px, #0a0a0a 44px
+  );
+}
+.ph-city     { background: linear-gradient(160deg, #3a8ab0 0%, #6CABDD 100%); }
 
 /* ============================================================
    FORMS

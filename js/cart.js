@@ -30,6 +30,7 @@ function cartAdd(product, size, color, qty = 1) {
       name: product.name,
       price: product.price,
       ph: product.ph,
+      img: product.img || null,
       size, color, qty,
     });
   }

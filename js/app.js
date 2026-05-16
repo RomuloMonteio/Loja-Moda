@@ -377,7 +377,10 @@ function initSearch() {
       ? found.map(p => `
           <a href="product.html?id=${p.id}" class="product-card" onclick="closeSearch()" style="display:block">
             <div class="product-card-media" style="aspect-ratio:3/4">
-              ${renderPlaceholder(p.ph, p.name)}
+              ${p.img
+                ? `<img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:contain;padding:10% 12% 5%">`
+                : renderPlaceholder(p.ph, p.name)
+              }
             </div>
             <div class="product-card-info" style="padding:8px 0 0">
               <div class="product-card-name">${p.name}</div>
@@ -574,7 +577,10 @@ function renderCartSidebarItems() {
   wrap.innerHTML = cart.map(item => `
     <div class="cart-item" data-id="${item.id}" data-size="${item.size}" data-color="${item.color}">
       <div class="cart-item-img">
-        <div class="product-placeholder ${item.ph}"></div>
+        ${item.img
+          ? `<img src="${item.img}" alt="${item.name}" style="width:100%;height:100%;object-fit:contain;padding:4px">`
+          : `<div class="product-placeholder ${item.ph || 'ph-1'}"></div>`
+        }
       </div>
       <div class="cart-item-info">
         <div class="cart-item-name">${item.name}</div>

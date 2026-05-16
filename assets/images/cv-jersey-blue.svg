@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 330" width="280" height="330">
+  <defs>
+    <linearGradient id="blueBody" x1="0%" y1="0%" x2="55%" y2="100%">
+      <stop offset="0%" stop-color="#1558CC"/>
+      <stop offset="100%" stop-color="#002878"/>
+    </linearGradient>
+    <linearGradient id="blueSide" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#001840" stop-opacity="0.45"/>
+      <stop offset="40%" stop-color="#001840" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#001840" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#001840" stop-opacity="0.3"/>
+    </linearGradient>
+    <filter id="jerseyDrop" x="-20%" y="-10%" width="140%" height="130%">
+      <feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#000000" flood-opacity="0.55"/>
+    </filter>
+    <path id="jB" d="M88,14 C72,6 40,9 28,16 L4,58 L30,118 L68,100 L63,325 L217,325 L212,100 L250,118 L276,58 L252,16 C240,9 208,6 192,14 C178,40 162,48 140,48 C118,48 102,40 88,14Z"/>
+    <clipPath id="jBClip">
+      <use href="#jB"/>
+    </clipPath>
+    <polygon id="starB" points="0,-5.5 1.3,-1.8 5.2,-1.7 2.1,0.7 3.2,4.5 0,2.3 -3.2,4.5 -2.1,0.7 -5.2,-1.7 -1.3,-1.8"/>
+  </defs>
+
+  <!-- soft shadow layer -->
+  <use href="#jB" fill="#000" opacity="0.22" transform="translate(6,12)"/>
+
+  <!-- main body -->
+  <use href="#jB" fill="url(#blueBody)" filter="url(#jerseyDrop)"/>
+
+  <!-- side shading for 3-D depth -->
+  <use href="#jB" fill="url(#blueSide)"/>
+
+  <!-- collar band -->
+  <path d="M88,14 C102,40 118,48 140,48 C162,48 178,40 192,14 L185,10 C172,32 157,42 140,42 C123,42 108,32 95,10Z" fill="#001840"/>
+
+  <!-- shoulder seam hints -->
+  <path d="M88,14 C72,6 40,9 28,16" fill="none" stroke="#001440" stroke-width="2" opacity="0.5"/>
+  <path d="M192,14 C208,6 240,9 252,16" fill="none" stroke="#001440" stroke-width="2" opacity="0.5"/>
+
+  <!-- sleeve seam lines -->
+  <line x1="68" y1="100" x2="68" y2="188" stroke="#001440" stroke-width="1.5" opacity="0.45" clip-path="url(#jBClip)"/>
+  <line x1="212" y1="100" x2="212" y2="188" stroke="#001440" stroke-width="1.5" opacity="0.45" clip-path="url(#jBClip)"/>
+
+  <!-- white horizontal band -->
+  <rect x="63" y="192" width="154" height="22" clip-path="url(#jBClip)" fill="white"/>
+
+  <!-- red stripe -->
+  <rect x="63" y="214" width="154" height="10" clip-path="url(#jBClip)" fill="#CF1020"/>
+
+  <!-- 10 stars in circle — center (115, 130), radius 22 -->
+  <use href="#starB" transform="translate(115,108)" fill="#FFD100"/>
+  <use href="#starB" transform="translate(127.9,112.2)" fill="#FFD100"/>
+  <use href="#starB" transform="translate(135.9,123.2)" fill="#FFD100"/>
+  <use href="#starB" transform="translate(135.9,136.8)" fill="#FFD100"/>
+  <use href="#starB" transform="translate(127.9,147.8)" fill="#FFD100"/>
+  <use href="#starB" transform="translate(115,152)" fill="#FFD100"/>
+  <use href="#starB" transform="translate(102.1,147.8)" fill="#FFD100"/>
+  <use href="#starB" transform="translate(94.1,136.8)" fill="#FFD100"/>
+  <use href="#starB" transform="translate(94.1,123.2)" fill="#FFD100"/>
+  <use href="#starB" transform="translate(102.1,112.2)" fill="#FFD100"/>
+
+  <!-- subtle shine highlight on upper chest -->
+  <ellipse cx="155" cy="80" rx="45" ry="28" fill="white" opacity="0.06" clip-path="url(#jBClip)"/>
+</svg>

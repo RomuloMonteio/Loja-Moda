@@ -129,16 +129,23 @@ window.goPage = goPage;
    ============================================================ */
 function renderProductCard(p) {
   const onSale = p.comparePrice && p.comparePrice > p.price;
-  const badge = p.isLimited ? 'limited' : p.isNew ? 'new' : onSale ? 'sale' : p.isBestSeller ? null : null;
+  const badge = p.isLimited ? 'limited' : p.isNew ? 'new' : onSale ? 'sale' : null;
   const badgeLabel = p.isLimited ? 'Limited' : p.isNew ? 'New' : onSale ? `−${Math.round((1-p.price/p.comparePrice)*100)}%` : '';
   const wl = (typeof isInWishlist !== 'undefined') && isInWishlist(p.id);
+
+  const mainMedia = p.img
+    ? `<img src="${p.img}" alt="${p.name}" class="product-card-img-main" loading="lazy" style="object-fit:contain;padding:12% 15% 6%">`
+    : `<div class="product-placeholder product-card-img-main ${p.ph}"></div>`;
+  const hoverMedia = p.img
+    ? `<img src="${p.img}" alt="${p.name}" class="product-card-img-hover" loading="lazy" style="object-fit:contain;padding:12% 15% 6%;opacity:.9;filter:brightness(1.08) saturate(1.1)">`
+    : `<div class="product-placeholder product-card-img-hover ${p.ph}" style="opacity:.85;filter:brightness(1.15)"></div>`;
 
   return `
     <article class="product-card reveal" data-id="${p.id}">
       <div class="product-card-media">
         <a href="product.html?id=${p.id}">
-          <div class="product-placeholder product-card-img-main ${p.ph}"></div>
-          <div class="product-placeholder product-card-img-hover ${p.ph}" style="opacity:.85;filter:brightness(1.15)"></div>
+          ${mainMedia}
+          ${hoverMedia}
         </a>
         ${badge ? `<div class="product-card-badges"><span class="badge badge-${badge}">${badgeLabel || badge}</span></div>` : ''}
         <button class="product-card-wishlist${wl ? ' active' : ''}" data-wish="${p.id}"

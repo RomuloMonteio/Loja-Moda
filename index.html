@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NOIR. — Premium Streetwear</title>
-  <meta name="description" content="NOIR. — Roupa construída com intenção. Premium streetwear para quem recusa o ordinário.">
-  <meta property="og:title" content="NOIR. — Premium Streetwear">
-  <meta property="og:description" content="Premium streetwear para quem recusa o ordinário.">
+  <title>NOIR. — Camisolas de Futebol</title>
+  <meta name="description" content="NOIR. — Camisolas oficiais das maiores seleções e clubes do mundo. Cabo Verde, Portugal, Brasil, Barcelona e muito mais.">
+  <meta property="og:title" content="NOIR. — Camisolas de Futebol">
+  <meta property="og:description" content="Camisolas oficiais das maiores equipas e seleções do mundo.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/main.css">
@@ -24,13 +24,72 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, #080808 0%, #141420 40%, #0a0a0a 100%);
+      background: linear-gradient(135deg, #060810 0%, #0d1020 45%, #080a18 100%);
     }
     .hero-bg::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 70% 40%, rgba(196,164,124,0.06) 0%, transparent 60%);
+      background:
+        radial-gradient(ellipse at 70% 35%, rgba(0,56,147,0.12) 0%, transparent 55%),
+        radial-gradient(ellipse at 30% 70%, rgba(196,164,124,0.05) 0%, transparent 50%);
+    }
+
+    /* ---- Jersey hero animation ---- */
+    .hero-jerseys {
+      position: absolute;
+      right: var(--pad);
+      top: 50%;
+      transform: translateY(-52%);
+      display: flex;
+      align-items: flex-end;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-jersey {
+      width: clamp(155px, 17vw, 255px);
+      filter: drop-shadow(0 20px 45px rgba(0,0,0,0.7));
+      opacity: 0;
+      display: block;
+    }
+    .hero-jersey-blue {
+      margin-right: clamp(-40px, -4vw, -60px);
+      z-index: 1;
+      animation: jerseyIn1 0.95s cubic-bezier(0.23,1,0.32,1) 0.45s both,
+                 jerseyFloat1 7s ease-in-out 1.8s infinite;
+    }
+    .hero-jersey-white {
+      z-index: 2;
+      animation: jerseyIn2 0.95s cubic-bezier(0.23,1,0.32,1) 0.75s both,
+                 jerseyFloat2 7s ease-in-out 2.2s infinite;
+    }
+    @keyframes jerseyIn1 {
+      from { opacity:0; transform: translateY(70px) rotate(-22deg) scale(0.82); }
+      to   { opacity:1; transform: translateY(8px)  rotate(-8deg)  scale(1); }
+    }
+    @keyframes jerseyIn2 {
+      from { opacity:0; transform: translateY(90px) rotate(20deg)  scale(0.82); }
+      to   { opacity:1; transform: translateY(0)    rotate(5deg)   scale(1); }
+    }
+    @keyframes jerseyFloat1 {
+      0%,100% { transform: translateY(8px)  rotate(-8deg); }
+      50%     { transform: translateY(-6px) rotate(-6deg); }
+    }
+    @keyframes jerseyFloat2 {
+      0%,100% { transform: translateY(0)    rotate(5deg); }
+      50%     { transform: translateY(-11px) rotate(7deg); }
+    }
+    @media (max-width: 900px) {
+      .hero-jerseys {
+        right: 50%;
+        transform: translate(50%, -68%);
+        opacity: 0.28;
+        z-index: 0;
+      }
+      .hero-jersey { width: 130px; }
+    }
+    @media (max-width: 600px) {
+      .hero-jerseys { display: none; }
     }
     .hero-noise {
       position: absolute;
@@ -181,17 +240,24 @@
   <div class="hero-noise"></div>
   <div class="bg-blob bg-blob-1"></div>
   <div class="bg-blob bg-blob-2"></div>
+
+  <!-- Camisolas de Cabo Verde animadas -->
+  <div class="hero-jerseys">
+    <img src="assets/images/cv-jersey-blue.svg"  alt="Cabo Verde — Camisola Principal"    class="hero-jersey hero-jersey-blue">
+    <img src="assets/images/cv-jersey-white.svg" alt="Cabo Verde — Camisola Alternativa"  class="hero-jersey hero-jersey-white">
+  </div>
+
   <div class="hero-content container">
-    <div class="hero-label">Nova Coleção 2026</div>
+    <div class="hero-label">Temporada 2025 / 26</div>
     <h1 class="hero-title">
-      <span class="hero-text-line"><span>Built</span></span>
-      <span class="hero-text-line"><span>For The</span></span>
-      <span class="hero-text-line"><span style="color:var(--accent)">Streets.</span></span>
+      <span class="hero-text-line"><span>Veste</span></span>
+      <span class="hero-text-line"><span>As Tuas</span></span>
+      <span class="hero-text-line"><span style="color:var(--accent)">Cores.</span></span>
     </h1>
-    <p class="hero-sub">Roupa construída com intenção. Cada peça pensada para durar além das tendências.</p>
+    <p class="hero-sub">Camisolas oficiais das maiores seleções e clubes do mundo. Qualidade premium, autenticidade garantida.</p>
     <div class="hero-ctas">
-      <a href="shop.html" class="btn btn-primary btn-lg">Shop Now</a>
-      <a href="shop.html?collection=new-season" class="btn btn-outline btn-lg">New Season</a>
+      <a href="shop.html" class="btn btn-primary btn-lg">Ver Coleção</a>
+      <a href="shop.html?collection=cabo-verde" class="btn btn-outline btn-lg">Cabo Verde</a>
     </div>
   </div>
   <div class="hero-scroll">
@@ -203,19 +269,23 @@
 <!-- ===================== MARQUEE ===================== -->
 <div class="marquee-wrap">
   <div class="marquee-track">
-    <div class="marquee-item"><span class="marquee-dot"></span>New Season 2026</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Free Shipping Over €80</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Premium Quality Fabrics</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Limited Edition Drops</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>30-Day Free Returns</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Worldwide Shipping</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Temporada 2025/26</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Envio Grátis acima de €80</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Cabo Verde · Portugal · Brasil</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Camisolas Oficiais</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Devoluções 30 Dias</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Envio Mundial</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Barcelona · Real Madrid · PSG</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Autenticidade Garantida</div>
     <!-- duplicate for seamless loop -->
-    <div class="marquee-item"><span class="marquee-dot"></span>New Season 2026</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Free Shipping Over €80</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Premium Quality Fabrics</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Limited Edition Drops</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>30-Day Free Returns</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Worldwide Shipping</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Temporada 2025/26</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Envio Grátis acima de €80</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Cabo Verde · Portugal · Brasil</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Camisolas Oficiais</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Devoluções 30 Dias</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Envio Mundial</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Barcelona · Real Madrid · PSG</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Autenticidade Garantida</div>
   </div>
 </div>
 
@@ -248,7 +318,7 @@
       <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center, rgba(196,164,124,0.08) 0%, transparent 70%)"></div>
       <div class="video-mock-text">
         <div style="font-family:var(--font-display);font-size:clamp(32px,5vw,72px);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">
-          The Story<br>Behind NOIR.
+          A Paixão<br>Pelo Futebol
         </div>
         <div class="video-play-btn" style="position:static;margin-top:16px">
           <div class="video-play-circle">
@@ -298,10 +368,10 @@
     <div class="reveal" style="max-width:560px;margin:0 auto">
       <div class="label" style="margin-bottom:12px;color:var(--accent)">Newsletter exclusiva</div>
       <h2 style="font-family:var(--font-display);font-size:clamp(36px,5vw,64px);text-transform:uppercase;letter-spacing:.04em;line-height:1;margin-bottom:12px">
-        Acesso antecipado<br>a drops exclusivos
+        Novas camisolas<br>em primeira mão
       </h2>
       <p style="font-size:14px;color:var(--text-3);margin:0 auto 0">
-        Subscreve e recebe 10% de desconto na primeira encomenda.
+        Subscreve e recebe 10% de desconto na primeira encomenda. Sê o primeiro a saber de novas coleções.
       </p>
       <form class="nl-form" id="homeNewsletterForm">
         <input type="email" class="form-input" placeholder="o teu email" required style="height:48px">
@@ -325,13 +395,16 @@ document.addEventListener('DOMContentLoaded', () => {
   if (cGrid && typeof COLLECTIONS !== 'undefined') {
     cGrid.innerHTML = COLLECTIONS.map(c => `
       <a href="shop.html?collection=${c.id}" class="collection-card reveal">
-        <div class="collection-card-media">
-          <div class="product-placeholder ${c.ph}"></div>
+        <div class="collection-card-media${c.img ? ' collection-card-jersey' : ''}">
+          ${c.img
+            ? `<img src="${c.img}" alt="${c.name}" class="collection-jersey-img" loading="lazy">`
+            : `<div class="product-placeholder ${c.ph}"></div>`
+          }
         </div>
         <div class="collection-card-overlay"></div>
         <div class="collection-card-content">
           <div class="collection-card-title">${c.name}</div>
-          <div class="collection-card-count">${c.count} peças</div>
+          <div class="collection-card-count">${c.count} peça${c.count !== 1 ? 's' : ''}</div>
         </div>
       </a>
     `).join('');
